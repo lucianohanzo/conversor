@@ -44,7 +44,7 @@ arquivo_log="/var/log/conversor/arquivo_$datalog@$horalog.log"
 arquivo_texto=/tmp/arquivo.txt
 
 # Pega os arquivos mkv, mp4, avi e webm, da pasta de entrada, e armazena.
-comando=$(find $entrada -iregex ".*\.\(mkv\|mp4\|avi\|webm\)$" | sort)
+comando=$(find "$entrada" -iregex ".*\.\(mkv\|mp4\|avi\|webm\)$" | sort)
 
 oldIFS=$IFS
 IFS=$'\n'
