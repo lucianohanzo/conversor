@@ -1,9 +1,19 @@
 #!/bin/bash
+# CRIADOR : LUCIANO PEREIRA DE SOUZA
+# REVISOR : LUCIANO PEREIRA DE SOUZA
+# FINALIDADE : Converter todos os vídeos de uma deteminada pasta em outra pasta.
+# OBS : Arquivo final não converte legendas embutidas.
 
 entrada=$1 ; saida=$2
 
-# Verifica se foi passado dois argumentos.
+# Verifica se o usuário é root.
+if [ $(whoami) != "root" ]; then
+    echo -e "\n#=== Somente usuário root. ===#\nTente \"sudo -i\" ou \"sudo $0\" :)."
+    exit 72
+fi
 
+
+# Verifica se foi passado dois argumentos.
 if [ $# -ne 2 ]; then
 	echo "Precisa de dois argumentos."
 	echo "Exemplo : $0 /dir_entrada /dir_saida"
@@ -62,7 +72,7 @@ for arquivo in $comando; do
 
 	# Salva arquivo convertido no log.
 	hora_atual=$(date +%H:%M:%S)
-	echo "$arquivo | $hora_atual" >> $arquivo_log
+	echo "$(basename $arquivo) | $hora_atual" >> $arquivo_log
 
 done
 
